@@ -1,6 +1,12 @@
 import Ember from 'ember';
 import config from './config/environment';
 
+export default Ember.Route.extend({
+   model(params) {
+     return this.store.findRecord('rental', params.rental_id);
+   },
+});
+
 const Router = Ember.Router.extend({
   location: config.locationType
 });
@@ -8,6 +14,7 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('about');
   this.route('contact');
+  this.route('rental', {path: '/rental/:rental_id'});
 });
 
 export default Router;
